@@ -35,7 +35,7 @@ public class CadVeiculo {
                         break;
                 }
                 scan.nextLine();
-                System.out.print("Digite um número dentro das opções acima:");
+                System.out.print("Digite a opção desejada: ");
             } while (true);
             scan.nextLine();
             switch (opcao) {
@@ -117,7 +117,7 @@ public class CadVeiculo {
                 } catch (NumberFormatException e) {
                 }
             }
-            System.out.println("Digite um ano válido (maior que zero).");
+            System.out.println("Digite um ano válido: ");
         }
 
 
@@ -141,7 +141,7 @@ public class CadVeiculo {
         if (tipoVeiculo == 1) {
             int numeroPortas;
             while (true) {
-                System.out.print("Digite o número de portas (2 ou 4): ");
+                System.out.print("Digite o número de portas: ");
                 if (scan.hasNextInt()) {
                     numeroPortas = scan.nextInt();
                     if (numeroPortas == 2 || numeroPortas == 4) {
@@ -173,7 +173,7 @@ public class CadVeiculo {
         try {
             veiculoService.save(veiculoAdd);
             System.out.println("Veículo cadastrado com sucesso!");
-            System.out.println("Pressione Enter para continuar...");
+            System.out.println("Pressione Enter para voltar ao Menu Inicial");
             scan.nextLine();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -210,7 +210,7 @@ public class CadVeiculo {
             System.out.println("Tempo de uso: " + veiculo.get().calcularTempoDeUso() + " ano(s)");
             System.out.println("Imposto: " + veiculo.get().calcularImposto());
         } else {
-            System.out.println("Veículo não encontrado.");
+            System.out.println("Veículo não encontrado com a placa informada.");
         }
         System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
         scan.nextLine();
@@ -219,11 +219,11 @@ public class CadVeiculo {
 
     private static void removeVeiculo() {
         System.out.print("\033[H\033[2J");
-        System.out.print("Digite a placa do veículo que deseja remover: ");
+        System.out.print("Digite a placa do veículo que deseja REMOVER: ");
         String placa = scan.nextLine();
         try {
             veiculoService.removeVeiculo(placa);
-            System.out.println("Veículo removido com sucesso.");
+            System.out.println("Veículo removido com sucesso!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
