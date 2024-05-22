@@ -3,19 +3,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import entities.Veiculo;
+
 
 public class VeiculoService {
     private List<Veiculo> veiculosDB;
+
 
     public List<Veiculo> getVeiculosDB() {
         return veiculosDB;
     }
 
+
     public VeiculoService() {
         this.veiculosDB = new ArrayList<>();
     }
-    
+
+
     public Veiculo save(Veiculo veiculo) throws Exception {
         if (veiculo == null)
             throw new Exception("Objeto nullo");
@@ -36,3 +41,4 @@ public class VeiculoService {
         }
     }
 }
+
