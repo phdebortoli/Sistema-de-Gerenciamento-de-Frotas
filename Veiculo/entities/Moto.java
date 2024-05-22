@@ -2,17 +2,15 @@ package entities;
 public final class Moto extends Veiculo{
     private boolean partidaEletrica;
 
-
     @Override
     public String toString() {
         var partida = this.getPartidaEletrica() ? "Sim" : "Não";
         return "Veículo: " + this.getMarca()
-                + " " + this.getModelo()
-                + " " + this.getAno()
-                + " - Placa: " + this.getPlaca()
-                + " - Part. Elétrica: " + partida;
+            + " " + this.getModelo()
+            + " " + this.getAno()
+            + " - Placa: " + this.getPlaca()
+            + " - Part. Elétrica: " + partida;
     }
-
 
     public boolean getPartidaEletrica() {
         return partidaEletrica;
@@ -25,10 +23,8 @@ public final class Moto extends Veiculo{
         this.partidaEletrica = partidaEletrica;
     }
 
-
     @Override
     public double calcularImposto() {
         return 500.0;
     }
 }
-

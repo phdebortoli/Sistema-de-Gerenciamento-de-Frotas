@@ -1,39 +1,33 @@
 package entities;
 import java.time.Year;
 
-
 public abstract class Veiculo {
     private String marca;
     private String modelo;
     private int ano;
     private String placa;
 
-
     public static final int MAX_TEMPO_USO = 30;
 
-
     public abstract double calcularImposto();
-
 
     @Override
     public String toString() {
         return "Veículo: " + this.getMarca()
-                + " " + this.getModelo()
-                + " " + this.getAno()
-                + " - Placa: " + this.getPlaca();
+            + " " + this.getModelo()
+            + " " + this.getAno()
+            + " - Placa: " + this.getPlaca();
     }
-
 
     public Veiculo(){
         this("","",1900,"");
     }
-    public Veiculo (String marca, String modelo, int ano, String placa) {
+    public Veiculo(String marca, String modelo, int ano, String placa) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.placa = placa;
     }
-
 
     public final int calcularTempoDeUso() {
         int anoAtual = Year.now().getValue();
@@ -43,8 +37,7 @@ public abstract class Veiculo {
         int tempoUso = anoBase - this.ano;
         return tempoUso;
     }
-
-
+    
     public String getMarca() {
         return marca;
     }
@@ -70,9 +63,7 @@ public abstract class Veiculo {
         this.placa = placa;
     }
 
-
     void ligar() {
         System.out.println("Veículo Ligado!");
     }
 }
-
