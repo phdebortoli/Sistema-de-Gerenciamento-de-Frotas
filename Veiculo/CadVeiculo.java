@@ -91,7 +91,7 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite o modelo " + descricao);
             modelo = scan.nextLine();
-            if (!modelo.trim().isEmpty()) {
+           if (!modelo.trim().isEmpty()) {
                 break;
             }
             System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
@@ -138,10 +138,10 @@ public class CadVeiculo {
                         break;
                     }
                 }
-                scan.nextLine(); 
+                scan.nextLine();
                 System.out.println("Digite um número de portas válido: ");
             }
-            scan.nextLine(); 
+            scan.nextLine();
             veiculoAdd = new Carro(marca, modelo, ano, placa, numeroPortas);
         } else {
             int partidaEletrica;
@@ -153,10 +153,10 @@ public class CadVeiculo {
                         break;
                     }
                 }
-                scan.nextLine(); 
+                scan.nextLine();
                 System.out.println("Digite um número dentro das opções acima: ");
             }
-            scan.nextLine(); 
+            scan.nextLine();
             boolean partida = partidaEletrica == 1;
             veiculoAdd = new Moto(marca, modelo, ano, placa, partida);
         }
@@ -166,7 +166,9 @@ public class CadVeiculo {
             System.out.println("Pressione Enter para voltar ao Menu Inicial");
             scan.nextLine();
         } catch (Exception e) {
+            System.out.println("NÃO FOI POSSÍVEL CADASTRAR O VEÍCULO");
             System.out.println(e.getMessage());
+            System.out.println("Pressione Enter para voltar ao Menu Inicial");
             scan.nextLine();
         }
     }
