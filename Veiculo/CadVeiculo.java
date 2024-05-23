@@ -91,10 +91,10 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite o modelo " + descricao);
             modelo = scan.nextLine();
-           if (!modelo.trim().isEmpty()) {
+           //if (!modelo.trim().isEmpty()) { // linha comentada, para mostrar outro erro que seria ao final do programa
                 break;
-            }
-            System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
+            //} 
+           // System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
         }
         int ano;
         while (true) {
