@@ -1,18 +1,14 @@
-import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
 
 import entities.Carro;
 import entities.Moto;
 import entities.Veiculo;
 import services.VeiculoService;
 
-
 public class CadVeiculo {
     private static Scanner scan;
     private static VeiculoService veiculoService;
-
 
     public static void main(String[] args) {
         scan = new Scanner(System.in);
@@ -27,7 +23,7 @@ public class CadVeiculo {
             System.out.println("3 - Pesquisar Veículo por Placa");
             System.out.println("4 - Remover Veículo");
             System.out.println("0 - Sair");
-            System.out.print("Digite a opção desejada:");
+            System.out.print("Digite a opção desejada: ");
             do {
                 if (scan.hasNextInt()) {
                     opcao = scan.nextInt();
@@ -43,13 +39,13 @@ public class CadVeiculo {
                     save();
                     break;
                 case 2:
-                    imprimirVeiculos();
+                    veiculoService.imprimirVeiculos();
                     break;
                 case 3:
-                    placaVeiculo();
+                    veiculoService.placaVeiculo();
                     break;
                 case 4:
-                    removeVeiculo();
+                    veiculoService.removePlaca();
                     break;
                 case 0:
                     System.out.print("\033[H\033[2J");
@@ -58,7 +54,6 @@ public class CadVeiculo {
             }
         } while (opcao != 0);
     }
-
 
     public static void save() {
         Veiculo veiculoAdd;
@@ -76,13 +71,11 @@ public class CadVeiculo {
                     break;
             }
             scan.nextLine();
-            System.out.print("Digite um número dentro das opções acima: ");
+            System.out.print("Digite um número dentro das Opções acima: ");
         } while (true);
         scan.nextLine();
 
-
         String descricao = tipoVeiculo == 1 ? "do carro: " : "da moto: ";
-
 
         String marca;
         while (true) {
@@ -93,7 +86,6 @@ public class CadVeiculo {
             }
             System.out.println("A marca não pode estar em branco. Por favor, tente novamente.");
         }
-
 
         String modelo;
         while (true) {
@@ -120,7 +112,6 @@ public class CadVeiculo {
             System.out.println("Digite um ano válido: ");
         }
 
-
         String placa;
         while (true) {
             System.out.print("Digite a placa " + descricao);
@@ -137,7 +128,6 @@ public class CadVeiculo {
             }
         }
 
-
         if (tipoVeiculo == 1) {
             int numeroPortas;
             while (true) {
@@ -148,10 +138,10 @@ public class CadVeiculo {
                         break;
                     }
                 }
-                scan.nextLine(); // Limpa a entrada inválida
-                System.out.println("Digite um número de portas válido (2 ou 4): ");
+                scan.nextLine(); 
+                System.out.println("Digite um número de portas válido: ");
             }
-            scan.nextLine(); // Limpa o buffer
+            scan.nextLine(); 
             veiculoAdd = new Carro(marca, modelo, ano, placa, numeroPortas);
         } else {
             int partidaEletrica;
@@ -163,10 +153,10 @@ public class CadVeiculo {
                         break;
                     }
                 }
-                scan.nextLine(); // Limpa a entrada inválida
+                scan.nextLine(); 
                 System.out.println("Digite um número dentro das opções acima: ");
             }
-            scan.nextLine(); // Limpa o buffer
+            scan.nextLine(); 
             boolean partida = partidaEletrica == 1;
             veiculoAdd = new Moto(marca, modelo, ano, placa, partida);
         }
@@ -180,55 +170,4 @@ public class CadVeiculo {
             scan.nextLine();
         }
     }
-
-
-    private static void imprimirVeiculos() {
-        List<Veiculo> veiculos = veiculoService.getVeiculosDB();
-        System.out.print("\033[H\033[2J");
-        if (veiculos.isEmpty()) {
-            System.out.println("Nenhum veículo cadastrado.");
-        } else {
-            for (Veiculo veiculo : veiculos) {
-                System.out.println(veiculo);
-                System.out.println("Tempo de uso: " + veiculo.calcularTempoDeUso() + " ano(s)");
-                System.out.println("Imposto: " + veiculo.calcularImposto());
-                System.out.println("-----------------------");
-            }
-        }
-        System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
-        scan.nextLine();
-    }
-
-
-    private static void placaVeiculo() {
-        System.out.print("\033[H\033[2J");
-        System.out.print("Digite a placa do veículo que deseja pesquisar: ");
-        String placa = scan.nextLine();
-        Optional<Veiculo> veiculo = veiculoService.placaVeiculo(placa);
-        if (veiculo.isPresent()) {
-            System.out.println(veiculo.get());
-            System.out.println("Tempo de uso: " + veiculo.get().calcularTempoDeUso() + " ano(s)");
-            System.out.println("Imposto: " + veiculo.get().calcularImposto());
-        } else {
-            System.out.println("Veículo não encontrado com a placa informada.");
-        }
-        System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
-        scan.nextLine();
-    }
-
-
-    private static void removeVeiculo() {
-        System.out.print("\033[H\033[2J");
-        System.out.print("Digite a placa do veículo que deseja REMOVER: ");
-        String placa = scan.nextLine();
-        try {
-            veiculoService.removeVeiculo(placa);
-            System.out.println("Veículo removido com sucesso!");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
-        scan.nextLine();
-    }
 }
-
