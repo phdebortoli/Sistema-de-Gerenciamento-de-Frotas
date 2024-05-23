@@ -1,8 +1,3 @@
-package services;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import entities.Carro;
@@ -81,14 +76,26 @@ public class VeiculoService {
             System.out.println("Veículo não encontrado com a placa informada.");
         }
         System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
-        scan.nextLine(); 
+        scan.nextLine();
     }
-    
+
     public void removePlaca() {
         System.out.print("\033[H\033[2J");
         System.out.println("REMOÇÃO DE VEÍCULO POR PLACA");
-        System.out.println("LISTA DE VEÍCULOS CADASTRADOS:");
-        imprimirVeiculos(); 
+        List<Veiculo> veiculos = getVeiculosDB();
+        System.out.print("\033[H\033[2J");
+        System.out.println("LISTA DE VEÍCULOS CADASTRADOS");
+        if (veiculos.isEmpty()) {
+            System.out.println("Nenhum veículo cadastrado.");
+        } else {
+            int i = 1;
+            for (Veiculo veiculo : veiculos) {
+                String tipoVeiculo = (veiculo instanceof Carro) ? "Carro" : "Moto";
+                String descricao = (veiculo instanceof Carro) ? "N. Portas: " + ((Carro) veiculo).getNumeroPortas() : "Part. Elétrica: " + (((Moto) veiculo).getPartidaEletrica() ? "Sim" : "Não");
+                System.out.println("Veículo " + i + " - Tipo: " + tipoVeiculo + " - " + veiculo + " - " + descricao);
+                i++;
+            }
+        }
         System.out.print("Informe a placa do veículo que deseja REMOVER: ");
         String placa = scan.nextLine();
         try {
@@ -98,6 +105,7 @@ public class VeiculoService {
             System.out.println("Veículo não encontrado com a placa informada");
         }
         System.out.println("Pressione Enter para continuar para voltar ao Menu Inicial");
-        scan.nextLine(); 
+        scan.nextLine();
     }
+
 }
