@@ -90,14 +90,14 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite o modelo " + descricao);
             modelo = scan.nextLine();
-           if (!modelo.trim().isEmpty()) { // linha comentada, para mostrar outro erro que seria ao final do programa
+           //if (!modelo.trim().isEmpty()) { // linha comentada, para mostrar outro erro que seria ao final do programa
                 break;
-            } 
-           System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
+            //} 
+           // System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
         }
         int ano;
-        while (true) {
-            System.out.print("Digite o ano " + descricao);
+        System.out.print("Digite o ano " + descricao);
+        do {
             String anoVeiculo = scan.nextLine();
             if (!anoVeiculo.trim().isEmpty()) {
                 try {
@@ -106,10 +106,12 @@ public class CadVeiculo {
                         break;
                     }
                 } catch (NumberFormatException e) {
+                    System.out.print("Digite um ano válido: ");
                 }
+            } else {
+                System.out.print("Digite um ano válido: ");
             }
-            System.out.print("Digite um ano válido: ");
-        }
+        } while (true);
 
         String placa;
         while (true) {
@@ -129,18 +131,28 @@ public class CadVeiculo {
 
         if (tipoVeiculo == 1) {
             int numeroPortas;
-            while (true) {
-                System.out.print("Digite o número de portas: ");
-                if (scan.hasNextInt()) {
-                    numeroPortas = scan.nextInt();
-                    if (numeroPortas == 2 || numeroPortas == 4) {
-                        break;
+            System.out.print("Digite o número de portas: ");
+            do {
+                String input = scan.nextLine();
+                if (!input.trim().isEmpty()) {
+                    try {
+                        numeroPortas = Integer.parseInt(input);
+                        if (numeroPortas == 2 || numeroPortas == 4) {
+                            break;
+                        } else {
+                        System.out.print("Digite um número de portas válido: "); 
+                        }
+                    } catch (NumberFormatException e) {
+                    System.out.print("Digite um número de portas válido: ");
+                   
                     }
+                } else{
+                    System.out.print("Digite um número de portas válido: ");
                 }
-                System.out.print("Digite um número de portas válido: ");
-            }
-            scan.nextLine();
+            } while(true);
+
             veiculoAdd = new Carro(marca, modelo, ano, placa, numeroPortas);
+
         } else {
             int partidaEletrica;
             while (true) {
