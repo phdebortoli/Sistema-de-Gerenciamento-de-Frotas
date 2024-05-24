@@ -1,4 +1,3 @@
-import java.util.Optional;
 import java.util.Scanner;
 
 import entities.Carro;
@@ -30,7 +29,7 @@ public class CadVeiculo {
                         break;
                 }
                 scan.nextLine();
-                System.out.print("Digite a opção desejada: ");
+                System.out.print("Digite um número dentro das Opções acima: ");
             } while (true);
             scan.nextLine();
             switch (opcao) {
@@ -80,10 +79,10 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite a marca " + descricao);
             marca = scan.nextLine();
-            if (!marca.trim().isEmpty()) {
+            //if (!marca.trim().isEmpty()) {
                 break;
-            }
-            System.out.println("A marca não pode estar em branco. Por favor, tente novamente.");
+            //}
+            //System.out.println("A marca não pode estar em branco. Por favor, tente novamente.");
         }
 
         String modelo;
@@ -108,23 +107,23 @@ public class CadVeiculo {
                 } catch (NumberFormatException e) {
                 }
             }
-            System.out.println("Digite um ano válido: ");
+            System.out.print("Digite um ano válido: ");
         }
 
         String placa;
         while (true) {
             System.out.print("Digite a placa " + descricao);
             placa = scan.nextLine();
-            if (!placa.trim().isEmpty()) {
-                Optional<Veiculo> veiculoExistente = veiculoService.placaVeiculo(placa);
-                if (veiculoExistente.isPresent()) {
-                    System.out.println("A placa já existe. Por favor, tente novamente.");
-                } else {
+            //if (!placa.trim().isEmpty()) {
+                //Optional<Veiculo> veiculoExistente = veiculoService.placaVeiculo(placa);
+                //if (veiculoExistente.isPresent()) {
+                   // System.out.println("A placa já existe. Por favor, tente novamente.");
+               // } else {
                     break;
-                }
-            } else {
-                System.out.println("A placa não pode estar em branco. Por favor, tente novamente.");
-            }
+               // }
+           // } else {
+               // System.out.println("A placa não pode estar em branco. Por favor, tente novamente.");
+            //}
         }
 
         if (tipoVeiculo == 1) {
@@ -137,8 +136,7 @@ public class CadVeiculo {
                         break;
                     }
                 }
-                scan.nextLine();
-                System.out.println("Digite um número de portas válido: ");
+                System.out.print("Digite um número de portas válido: ");
             }
             scan.nextLine();
             veiculoAdd = new Carro(marca, modelo, ano, placa, numeroPortas);
