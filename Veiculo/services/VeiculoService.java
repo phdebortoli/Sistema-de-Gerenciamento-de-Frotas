@@ -21,28 +21,16 @@ public class VeiculoService {
     }
 
     public Veiculo save(Veiculo veiculo) throws Exception {
-        List<String> errors = new ArrayList<>();
-    
-        if (veiculo == null) {
-            errors.add("Objeto nulo");
-        }
-    
-        if (veiculo.getModelo() == null || veiculo.getModelo().isEmpty()) {
-            errors.add("Campo Modelo não pode ser em branco");
-        }
-    
-        if (veiculo.getMarca() == null || veiculo.getMarca().isEmpty()) {
-            errors.add("Campo Marca não pode ser em branco");
-        }
-    
-        if (veiculo.getPlaca() == null || veiculo.getPlaca().isEmpty()) {
-            errors.add("Campo Placa não pode ser em branco");
-        }
-    
-        if (!errors.isEmpty()) {
-            throw new Exception(String.join("\n", errors));
-        }
-    
+        if (veiculo == null)
+            throw new Exception("Objeto nulo");
+        if (veiculo.getModelo() == null || veiculo.getModelo().isEmpty())
+            throw new Exception("Campo Modelo não pode ser em branco");
+
+        if (veiculo.getMarca() == null || veiculo.getMarca().isEmpty())
+            throw new Exception("Campo Marca não pode ser em branco");
+
+        if (veiculo.getPlaca() == null || veiculo.getPlaca().isEmpty())
+            throw new Exception("Campo Placa não pode ser em branco");
         veiculosDB.add(veiculo);
         return veiculo;
     }

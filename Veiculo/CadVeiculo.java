@@ -1,3 +1,4 @@
+import java.util.Optional;
 import java.util.Scanner;
 
 import entities.Carro;
@@ -79,20 +80,20 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite a marca " + descricao);
             marca = scan.nextLine();
-            //if (!marca.trim().isEmpty()) {
+            if (!marca.trim().isEmpty()) {
                 break;
-            //}
-            //System.out.println("A marca não pode estar em branco. Por favor, tente novamente.");
+            }
+            System.out.println("A marca não pode estar em branco. Por favor, tente novamente.");
         }
 
         String modelo;
         while (true) {
             System.out.print("Digite o modelo " + descricao);
             modelo = scan.nextLine();
-           //if (!modelo.trim().isEmpty()) { // linha comentada, para mostrar outro erro que seria ao final do programa
+           if (!modelo.trim().isEmpty()) { // linha comentada, para mostrar outro erro que seria ao final do programa
                 break;
-            //} 
-           // System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
+            } 
+           System.out.println("O modelo não pode estar em branco. Por favor, tente novamente.");
         }
         int ano;
         while (true) {
@@ -114,16 +115,16 @@ public class CadVeiculo {
         while (true) {
             System.out.print("Digite a placa " + descricao);
             placa = scan.nextLine();
-            //if (!placa.trim().isEmpty()) {
-                //Optional<Veiculo> veiculoExistente = veiculoService.placaVeiculo(placa);
-                //if (veiculoExistente.isPresent()) {
-                   // System.out.println("A placa já existe. Por favor, tente novamente.");
-               // } else {
+            if (!placa.trim().isEmpty()) {
+                Optional<Veiculo> veiculoExistente = veiculoService.placaVeiculo(placa);
+                if (veiculoExistente.isPresent()) {
+                    System.out.println("A placa já existe. Por favor, tente novamente.");
+               } else {
                     break;
-               // }
-           // } else {
-               // System.out.println("A placa não pode estar em branco. Por favor, tente novamente.");
-            //}
+               }
+           } else {
+               System.out.println("A placa não pode estar em branco. Por favor, tente novamente.");
+            }
         }
 
         if (tipoVeiculo == 1) {
