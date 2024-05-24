@@ -4,7 +4,6 @@ import java.util.Scanner;
 import entities.Carro;
 import entities.Moto;
 import entities.Veiculo;
-import services.VeiculoService;
 
 public class CadVeiculo {
     private static Scanner scan;
